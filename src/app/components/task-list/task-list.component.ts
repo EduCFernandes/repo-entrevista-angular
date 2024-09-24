@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Task, TaskService } from '../../services/task.service';
 
 @Component({
@@ -6,17 +6,15 @@ import { Task, TaskService } from '../../services/task.service';
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss']
 })
-export class TaskListComponent implements OnInit, AfterViewInit {
+export class TaskListComponent implements OnInit {
   tasks: Task[] = [];
   titulo: string = '';
 
   constructor(private taskService: TaskService) {}
 
   ngOnInit() {
+    this.titulo = 'Título lista';
     this.taskService.tasks$.subscribe(tasks => this.tasks = tasks);
   }
 
-  ngAfterViewInit() {
-    this.titulo = 'Título lista';
-  }
 }
