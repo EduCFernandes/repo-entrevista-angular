@@ -28,7 +28,13 @@ export class TaskService {
     });
   }
 
-  addTask(title: string) {
+  addTask(title: string): boolean {
+    const taskExists = this.tasks.some((task) => task.title === title)
+
+    if(taskExists) {
+      return false;
+    }
+    
     const newTask: Task = {
       id: Date.now(),
       title,
@@ -36,6 +42,7 @@ export class TaskService {
     };
     this.tasks.push(newTask);
     this.tasksSubject.next(this.tasks);
+    return true;
   }
 
   removeTask(id: number) {

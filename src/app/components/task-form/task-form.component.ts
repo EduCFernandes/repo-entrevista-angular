@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { TaskService } from '../../services/task.service';
+import { FormControl, Validators } from '@angular/forms';
+import { onlyLettersAndSpaces } from 'src/app/helpers/validators/regex-validations';
 
 @Component({
   selector: 'app-task-form',
@@ -7,12 +9,25 @@ import { TaskService } from '../../services/task.service';
   styleUrls: ['./task-form.component.scss']
 })
 export class TaskFormComponent {
-  taskTitle: string = '';
+  taskTitle: FormControl = new FormControl('', [Validators.required, Validators.minLength(20), Validators.pattern(onlyLettersAndSpaces)])
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService) { }
 
   onSubmit() {
+    if (this.taskTitle.invalid) {
+      this.taskTitle.markAsTouched()
+      return;
+    }
+
+    const successfullyAdded = this.taskService.addTask(this.taskTitle.value.trim());
+
+    if (!successfullyAdded) {
+      this.taskTitle.setErrors({ alreadyExists: true })
+    } else {
+      this.taskTitle.setErrors(null)
+      this.taskTitle.markAsUntouched()
+      this.taskTitle.reset()
       console.log('Task added');
-      this.taskService.addTask(this.taskTitle.trim());
+    }
   }
 }
