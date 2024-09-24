@@ -1,6 +1,4 @@
-
 <h1>{{ titulo }}</h1>
 <ul>
-    <app-task-item *ngFor="let task of tasks" [task]="task"></app-task-item>
+    <app-task-item *ngFor="let task of (taskService.tasks$ | async)" [task]="task"></app-task-item>
 </ul>
-  

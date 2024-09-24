@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { MockTaskService } from './mock-task.service';  // Importar o serviço mock
 
 export interface Task {
@@ -12,7 +12,7 @@ export interface Task {
   providedIn: 'root',
 })
 export class TaskService {
-  private tasksSubject = new Subject<Task[]>();
+  private tasksSubject = new BehaviorSubject<Task[]>([]);
   tasks$ = this.tasksSubject.asObservable();
 
   private tasks: Task[] = [];
