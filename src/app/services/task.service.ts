@@ -50,6 +50,11 @@ export class TaskService {
     this.tasksSubject.next(this.tasks);
   }
 
+  removeCompletedTasks() {
+    this.tasks = this.tasks.filter(task => !task.completed);
+    this.tasksSubject.next(this.tasks);
+  }
+
   toggleTaskCompletion(id: number) {
     const task = this.tasks.find(task => task.id === id);
     if (task) {
