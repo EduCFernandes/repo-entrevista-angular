@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TaskManagerComponent } from './task-manager.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { TaskFormComponent } from './task-form/task-form.component';
 
 describe('TaskManagerComponent', () => {
   let component: TaskManagerComponent;
@@ -8,7 +10,8 @@ describe('TaskManagerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TaskManagerComponent ]
+      declarations: [ TaskManagerComponent, TaskFormComponent ],
+      imports: [SharedModule]
     })
     .compileComponents();
 

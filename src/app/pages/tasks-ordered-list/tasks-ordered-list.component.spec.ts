@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TasksOrderedListComponent } from './tasks-ordered-list.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 describe('TasksOrderedListComponent', () => {
   let component: TasksOrderedListComponent;
@@ -8,7 +9,8 @@ describe('TasksOrderedListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TasksOrderedListComponent ]
+      declarations: [ TasksOrderedListComponent ], 
+      imports: [SharedModule]
     })
     .compileComponents();
 
