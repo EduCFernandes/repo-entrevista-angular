@@ -1,0 +1,27 @@
+@import "./variables";
+
+body {
+	font-family: Arial, sans-serif;
+	background-color: $background;
+	color: $text;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+li {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	margin-bottom: 10px;
+	background: $white;
+	border-radius: 4px;
+}
+
+li.completed span {
+	text-decoration: line-through;
+	color: $dark-gray;
+}

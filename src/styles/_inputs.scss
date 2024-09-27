@@ -1,0 +1,31 @@
+@import "./variables";
+
+fieldset {
+	border: none;
+	outline: none;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	margin: 0;
+	padding: 0;
+
+	small {
+		color: $danger;
+	}
+}
+
+input[type="text"] {
+	padding: 8px;
+	border-radius: 3px;
+	border: 1px solid $gray;
+
+	&.ng-invalid.ng-touched {
+		background-color: $danger-light;
+		border-color: $danger-light;
+	}
+}
+
+input[type="checkbox"] {
+	margin-right: 10px;
+	cursor: pointer;
+}

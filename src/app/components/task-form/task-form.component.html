@@ -1,11 +1,13 @@
-<form (ngSubmit)="onSubmit()">
-  <input type="text" [formControl]="taskTitle" name="title" placeholder="New Task">
-  <ng-container *ngIf="taskTitle.touched && taskTitle.invalid">
-    <small *ngIf="taskTitle.hasError('minlength')">Task title must be at least 20 characters long.</small>
-    <small *ngIf="taskTitle.hasError('required')">Task title is required.</small>
-    <small *ngIf="taskTitle.hasError('alreadyExists')">Task already exists!</small>
-    <small *ngIf="taskTitle.hasError('pattern')">Task title must only contain letters or spaces.</small>
-  </ng-container>
+<form (ngSubmit)="onSubmit()" class="task-form">
+  <fieldset>
+    <input type="text" [formControl]="taskTitle" name="title" placeholder="New Task">
+    <ng-container *ngIf="taskTitle.touched && taskTitle.invalid">
+      <small *ngIf="taskTitle.hasError('minlength')">Task title must be at least 20 characters long.</small>
+      <small *ngIf="taskTitle.hasError('required')">Task title is required.</small>
+      <small *ngIf="taskTitle.hasError('alreadyExists')">Task already exists!</small>
+      <small *ngIf="taskTitle.hasError('pattern')">Task title must only contain letters or spaces.</small>
+    </ng-container>
+  </fieldset>
 
-  <button type="submit">Add Task</button>
+  <button class="primary" type="submit">Add Task</button>
 </form>

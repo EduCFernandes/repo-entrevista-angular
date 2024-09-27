@@ -1,0 +1,56 @@
+@import "./variables";
+
+button {
+	color: $white;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 3px;
+	padding: 5px 10px;
+	cursor: pointer;
+
+	&:disabled {
+		pointer-events: none;
+		opacity: 0.6;
+	}
+}
+
+button.danger {
+	background-color: $danger;
+	border-color: $danger;
+
+	&:hover {
+		background-color: $danger-hover;
+		border-color: $danger-hover;
+	}
+}
+
+button.danger-outline {
+	background-color: transparent;
+	color: $danger;
+	border-color: $danger;
+
+	&:hover {
+		color: $danger-hover;
+		border-color: $danger-hover;
+	}
+}
+
+button.primary {
+	background-color: $primary;
+	border-color: $primary;
+
+	&:hover {
+		background-color: $primary-hover;
+		border-color: $primary-hover;
+	}
+}
+
+button.primary-outline {
+	background-color: transparent;
+	color: $primary;
+	border-color: $primary;
+
+	&:hover {
+		color: $primary-hover;
+	}
+}

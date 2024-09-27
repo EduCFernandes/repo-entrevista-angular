@@ -1,0 +1,15 @@
+.task-form {
+	display: flex;
+	align-items: start;
+	justify-content: start;
+	width: 100%;
+	gap: 10px;
+
+	fieldset {
+		flex-grow: 1;
+	}
+
+	button {
+		margin-top: 4px;
+	}
+}
