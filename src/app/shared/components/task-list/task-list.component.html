@@ -1,0 +1,14 @@
+<div class="task-list-header">
+    <h1>{{ titulo }}</h1>
+    <button *ngIf="editable && tasks.length" class="danger-outline" (click)="taskService.removeCompletedTasks()">
+        Delete Completed Tasks
+    </button>
+</div>
+
+<ul *ngIf="tasks.length">
+    <app-task-item *ngFor="let task of tasks" [task]="task" [editable]="editable"></app-task-item>
+</ul>
+
+<div class="empty-message" *ngIf="!tasks.length">
+    <p>No tasks registered!</p>
+</div>

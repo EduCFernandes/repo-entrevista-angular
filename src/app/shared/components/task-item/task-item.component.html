@@ -1,0 +1,5 @@
+<li [class.completed]="task.completed">
+  <input type="checkbox" (change)="onToggle()" [checked]="task.completed" *ngIf="editable">
+  <span>{{ task.title }}</span>
+  <button class="danger" (click)="onRemove()" *ngIf="editable">Remove</button>
+</li>

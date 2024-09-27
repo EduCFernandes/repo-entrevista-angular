@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { TaskService } from '../../services/task.service';
 import { FormControl, Validators } from '@angular/forms';
 import { onlyLettersAndSpaces } from 'src/app/helpers/validators/regex-validations';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-task-form',

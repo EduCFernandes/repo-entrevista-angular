@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Task, TaskService } from '../../services/task.service';
+import { Task, TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-task-item',
@@ -8,6 +8,7 @@ import { Task, TaskService } from '../../services/task.service';
 })
 export class TaskItemComponent {
   @Input() task!: Task;
+  @Input() editable: boolean = true;
 
   constructor(private taskService: TaskService) {}
 

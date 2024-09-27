@@ -15,51 +15,53 @@ export class TaskService {
   private tasksSubject = new BehaviorSubject<Task[]>([]);
   tasks$ = this.tasksSubject.asObservable();
 
-  private tasks: Task[] = [];
-
   constructor(private mockTaskService: MockTaskService) {
     this.loadTasks();  
   }
 
   private loadTasks() {
     this.mockTaskService.getTasks().subscribe((tasks) => {
-      this.tasks = tasks;
-      this.tasksSubject.next(this.tasks); 
+      this.tasksSubject.next(tasks); 
     });
   }
 
   addTask(title: string): boolean {
-    const taskExists = this.tasks.some((task) => task.title === title)
+    const taskExists = this.tasksSubject.value.some((task) => task.title === title)
 
-    if(taskExists) {
-      return false;
-    }
+    if(taskExists) return false;
     
     const newTask: Task = {
       id: Date.now(),
       title,
       completed: false,
     };
-    this.tasks.push(newTask);
-    this.tasksSubject.next(this.tasks);
+  
+    this.tasksSubject.next([...this.tasksSubject.value, newTask]);
     return true;
   }
 
   removeTask(id: number) {
-    this.tasks = this.tasks.filter(task => task.id !== id);
-    this.tasksSubject.next(this.tasks);
+    const updatedTasks = this.tasksSubject.value.filter(task => task.id !== id);
+    this.tasksSubject.next(updatedTasks);
   }
 
   removeCompletedTasks() {
-    this.tasks = this.tasks.filter(task => !task.completed);
-    this.tasksSubject.next(this.tasks);
+    const updatedTasks = this.tasksSubject.value.filter(task => !task.completed);
+    this.tasksSubject.next(updatedTasks);
   }
 
   toggleTaskCompletion(id: number) {
-    const task = this.tasks.find(task => task.id === id);
-    if (task) {
-      task.completed = !task.completed;
-      this.tasksSubject.next(this.tasks);
-    }
+    const updatedTasks = this.tasksSubject.value.map(task => {
+      if(task.id === id) {
+        task.completed = !task.completed;
+      }
+      return task;
+    });
+
+    this.tasksSubject.next(updatedTasks);
+  }
+
+  getSortedTasks() {
+    return [...this.tasksSubject.value].sort((a, b) => a.title.localeCompare(b.title));
   }
 }
