@@ -26,6 +26,8 @@ export class TaskService {
   }
 
   addTask(title: string): boolean {
+    if(!title || title === '') return false;
+    
     const taskExists = this.tasksSubject.value.some((task) => task.title === title)
 
     if(taskExists) return false;
