@@ -23,4 +23,27 @@ describe('TaskManagerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render the header component', () => {
+    const headerElement: HTMLElement = fixture.nativeElement.querySelector('app-header');
+    expect(headerElement).toBeTruthy();
+    expect(headerElement.getAttribute('title')).toBe('Task Manager');
+  });
+
+  it('should render the task form component', () => {
+    const taskListElement: HTMLElement = fixture.nativeElement.querySelector('app-task-form');
+    expect(taskListElement).toBeTruthy();
+  });
+
+  it('should render the task list component', () => {
+    const taskListElement: HTMLElement = fixture.nativeElement.querySelector('app-task-list');
+    expect(taskListElement).toBeTruthy();
+  });
+
+  it('should render redirect button', () => {
+    const button = fixture.nativeElement.querySelector('[data-testid="redirect-button"]');
+    expect(button).toBeTruthy();
+    expect(button.textContent).toContain('List Sorted Tasks');
+    expect(button.getAttribute('routerLink')).toBe('list');
+  });
 });
